@@ -1,11 +1,11 @@
 Summary:	Simple process monitor for MATE
 Name:		mate-system-monitor
-Version:	1.2.1
+Version:	1.4.0
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 URL:		http://mate-desktop.org
-Source0:	http://pub.mate-desktop.org/releases/1.2/%{name}-%{version}.tar.xz
+Source0:	http://pub.mate-desktop.org/releases/1.4/%{name}-%{version}.tar.xz
 
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	intltool
@@ -20,7 +20,7 @@ BuildRequires:	pkgconfig(glibmm-2.4)
 BuildRequires:	pkgconfig(gtkmm-2.4)
 BuildRequires:	pkgconfig(libgtop-2.0)
 BuildRequires:	pkgconfig(librsvg-2.0)
-BuildRequires:	pkgconfig(libwnck-1.0)
+BuildRequires:	pkgconfig(libmatewnck)
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(mateconf-2.0)
 BuildRequires:	pkgconfig(mate-doc-utils)
@@ -54,4 +54,11 @@ NOCONFIGURE=yes ./autogen.sh
 %{_datadir}/pixmaps/%{name}
 # mate help files 
 %{_datadir}/mate/help
+
+
+
+%changelog
+* Fri Jun 08 2012 Matthew Dawkins <mattydaw@mandriva.org> 1.2.1-1
++ Revision: 803236
+- imported package mate-system-monitor
 
