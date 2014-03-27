@@ -1,17 +1,17 @@
+%define url_ver %(echo %{version}|cut -d. -f1,2)
+
 Summary:	Simple process monitor for MATE
 Name:		mate-system-monitor
-Version:	1.4.0
+Version:	1.8.0
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
-URL:		http://mate-desktop.org
-Source0:	http://pub.mate-desktop.org/releases/1.4/%{name}-%{version}.tar.xz
-
-BuildRequires:	docbook-dtd412-xml
+Url:		http://mate-desktop.org
+Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 BuildRequires:	intltool
+BuildRequires:	itstool
 BuildRequires:	mate-common
-BuildRequires:	mate-conf
-BuildRequires:	xsltproc
+BuildRequires:	yelp-tools
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(giomm-2.4)
 BuildRequires:	pkgconfig(glib-2.0)
@@ -20,12 +20,9 @@ BuildRequires:	pkgconfig(glibmm-2.4)
 BuildRequires:	pkgconfig(gtkmm-2.4)
 BuildRequires:	pkgconfig(libgtop-2.0)
 BuildRequires:	pkgconfig(librsvg-2.0)
-BuildRequires:	pkgconfig(libmatewnck)
+BuildRequires:	pkgconfig(libwnck-1.0)
 BuildRequires:	pkgconfig(libxml-2.0)
-BuildRequires:	pkgconfig(mateconf-2.0)
-BuildRequires:	pkgconfig(mate-doc-utils)
 BuildRequires:	pkgconfig(mate-icon-theme)
-
 Requires:	polkit-mate
 
 %description
@@ -34,31 +31,26 @@ Mate-system-monitor is a simple process and system monitor.
 %prep
 %setup -q
 %apply_patches
+NOCONFIGURE=yes ./autogen.sh
 
 %build
-NOCONFIGURE=yes ./autogen.sh
-%configure2_5x \
-	--disable-scrollkeeper
+%configure2_5x
 
-%make LIBS='-lgmodule-2.0'
+%make
 
 %install
 %makeinstall_std
-%find_lang %{name} --with-gnome
+
+# remove unneeded converter
+rm -fr  %{buildroot}%{_datadir}/MateConf
+
+%find_lang %{name} --with-gnome --all-name
 
 %files -f %{name}.lang
 %doc README NEWS AUTHORS
-%{_sysconfdir}/mateconf/schemas/mate-system-monitor.schemas
 %{_bindir}/mate-system-monitor
 %{_datadir}/applications/*
+%{_datadir}/glib-2.0/schemas/org.mate.system-monitor.*.xml
 %{_datadir}/pixmaps/%{name}
-# mate help files 
-%{_datadir}/mate/help
-
-
-
-%changelog
-* Fri Jun 08 2012 Matthew Dawkins <mattydaw@mandriva.org> 1.2.1-1
-+ Revision: 803236
-- imported package mate-system-monitor
+%{_mandir}/man1/mate-system-monitor.1*
 
