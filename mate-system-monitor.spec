@@ -3,7 +3,7 @@
 Summary:	Simple process monitor for MATE
 Name:		mate-system-monitor
 Version:	1.8.0
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://mate-desktop.org
@@ -30,10 +30,9 @@ Mate-system-monitor is a simple process and system monitor.
 %prep
 %setup -q
 %apply_patches
-NOCONFIGURE=yes ./autogen.sh
 
 %build
-%configure2_5x
+%configure
 
 %make
 
