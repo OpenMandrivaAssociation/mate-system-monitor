@@ -2,7 +2,7 @@
 
 Summary:	Simple process monitor for MATE
 Name:		mate-system-monitor
-Version:	1.14.0
+Version:	1.18.0
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/GNOME
@@ -22,6 +22,7 @@ BuildRequires:	pkgconfig(librsvg-2.0)
 BuildRequires:	pkgconfig(libwnck-3.0)
 BuildRequires:	pkgconfig(libxml-2.0)
 Requires:	polkit-mate
+#Requires:	mate-desktop
 
 %description
 Mate-system-monitor is a simple process and system monitor.
@@ -31,20 +32,21 @@ Mate-system-monitor is a simple process and system monitor.
 %apply_patches
 
 %build
-%configure --with-gtk=3.0
-
+#NOCONFIGURE=yes ./autogen.sh
+%configure \
+        --disable-schemas-compile \
+        --enable-systemd \
+        %{nil}
 %make
 
 %install
 %makeinstall_std
 
-# remove unneeded converter
-rm -fr  %{buildroot}%{_datadir}/MateConf
-
+# locales
 %find_lang %{name} --with-gnome --all-name
 
 %files -f %{name}.lang
-%doc README NEWS AUTHORS
+%doc README NEWS AUTHORS ChangeLog TODO
 %{_bindir}/mate-system-monitor
 %{_datadir}/applications/*
 %{_datadir}/glib-2.0/schemas/org.mate.system-monitor.*.xml
