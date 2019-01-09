@@ -2,7 +2,7 @@
 
 Summary:	Simple process monitor for MATE
 Name:		mate-system-monitor
-Version:	1.20.0
+Version:	1.20.2
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/Other
@@ -29,7 +29,7 @@ BuildRequires:	yelp-tools
 
 Requires:	gksu
 Requires:	polkit-agent
-Requires:	mate-desktop 
+Requires:	mate-desktop
 
 %description
 The MATE Desktop Environment is the continuation of GNOME 2. It provides an
@@ -58,21 +58,20 @@ well with the MATE desktop environment.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
 #NOCONFIGURE=yes ./autogen.sh
 %configure \
 	--disable-schemas-compile \
 	%{nil}
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 # locales
 %find_lang %{name} --with-gnome --all-name
 
 %check
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
-
