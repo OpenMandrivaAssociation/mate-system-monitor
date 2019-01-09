@@ -1,4 +1,5 @@
 removed_sources:
   mate-system-monitor-1.14.0.tar.xz: a9045ce34fe9c116b6afae08b04030ab9c2287ae
-sources:
   mate-system-monitor-1.18.0.tar.xz: 0fb62abebd2eaf01c1583cf5edfdbdc0eb776880
+sources:
+  mate-system-monitor-1.18.3.tar.xz: 23f1afa6915ebdd6223dbf8c0df5642bb65ab627
