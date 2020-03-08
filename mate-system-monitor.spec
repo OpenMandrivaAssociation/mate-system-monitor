@@ -27,6 +27,7 @@ BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	pkgconfig(libwnck-3.0)
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	yelp-tools
+BuildRequires:  polkit-devel
 
 Requires:	gksu
 Requires:	polkit-agent
