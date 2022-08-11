@@ -3,7 +3,7 @@
 Summary:	Simple process monitor for MATE
 Name:		mate-system-monitor
 Version:	1.26.0
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Graphical desktop/Other
 Url:		http://mate-desktop.org
@@ -27,9 +27,8 @@ BuildRequires:	pkgconfig(libsystemd)
 BuildRequires:	pkgconfig(libwnck-3.0)
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	yelp-tools
-BuildRequires:  polkit-1-devel
+BuildRequires:  pkgconfig(polkit-agent-1)
 
-Requires:	gksu
 Requires:	polkit-agent
 Requires:	mate-desktop
 
@@ -54,7 +53,7 @@ well with the MATE desktop environment.
 %{_libexecdir}/%{name}/msm-kill
 %{_libexecdir}/%{name}/msm-renice
 %{_datadir}/polkit-1/actions/org.mate.mate-system-monitor.policy
-%{_mandir}/man1/mate-system-monitor.1*
+%doc %{_mandir}/man1/mate-system-monitor.1*
 
 #---------------------------------------------------------------------------
 
@@ -66,7 +65,9 @@ well with the MATE desktop environment.
 #NOCONFIGURE=yes ./autogen.sh
 %configure \
 	--disable-schemas-compile \
-	%{nil}
+	--enable-systemd \
+	--enable-wnck
+
 %make_build
 
 %install
