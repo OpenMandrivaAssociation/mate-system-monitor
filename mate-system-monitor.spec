@@ -2,7 +2,7 @@
 
 Summary:	Simple process monitor for MATE
 Name:		mate-system-monitor
-Version:	1.26.1
+Version:	1.26.2
 Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/Other
