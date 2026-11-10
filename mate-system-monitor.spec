@@ -2,16 +2,15 @@
 
 Summary:	Simple process monitor for MATE
 Name:		mate-system-monitor
-Version:	1.28.1
-Release:	2
+Version:	1.28.2
+Release:	1
 License:	GPLv2+
 Group:		Graphical desktop/Other
 Url:		https://mate-desktop.org
-Source0:	https://pub.mate-desktop.org/releases/%{mate_ver}/%{name}-%{version}.tar.xz
+#Source0:	https://pub.mate-desktop.org/releases/%{mate_ver}/%{name}-%{version}.tar.xz
+Source0:	https://github.com/mate-desktop/mate-system-monitor/archive/v%{version}/%{name}-%{version}.tar.gz
 
-BuildRequires:	automake
-BuildRequires:	libtool-base
-BuildRequires:	slibtool
+BuildRequires:	meson
 BuildRequires:	make
 BuildRequires:	autoconf-archive
 BuildRequires:	desktop-file-utils
@@ -61,20 +60,17 @@ well with the MATE desktop environment.
 #---------------------------------------------------------------------------
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 %build
-#NOCONFIGURE=yes ./autogen.sh
-%configure \
-	--disable-schemas-compile \
-	--enable-systemd \
-	--enable-wnck
+%meson \
+	-Dwnck=true \
+	-Dsystemd=true
 
-%make_build
+%meson_build
 
 %install
-%make_install
+%meson_install
 
 # locales
 %find_lang %{name} --with-gnome --all-name
