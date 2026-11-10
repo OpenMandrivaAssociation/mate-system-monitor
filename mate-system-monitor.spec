@@ -48,8 +48,11 @@ well with the MATE desktop environment.
 %files -f %{name}.lang
 %doc README NEWS AUTHORS ChangeLog TODO
 %{_bindir}/mate-system-monitor
+%{_libexecdir}/mate-system-monitor/gsm-kill
+%{_libexecdir}/mate-system-monitor/gsm-renice
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/glib-2.0/schemas/org.mate.system-monitor.*.xml
+%{_datadir}/glib-2.0/schemas/org.mate.mate-system-monitor.enums.xml
 %{_datadir}/pixmaps/%{name}
 %{_datadir}/metainfo/%{name}.appdata.xml
 %{_datadir}/polkit-1/actions/org.mate.mate-system-monitor.policy
