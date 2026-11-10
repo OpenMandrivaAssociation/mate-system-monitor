@@ -52,8 +52,6 @@ well with the MATE desktop environment.
 %{_datadir}/glib-2.0/schemas/org.mate.system-monitor.*.xml
 %{_datadir}/pixmaps/%{name}
 %{_datadir}/metainfo/%{name}.appdata.xml
-%{_libexecdir}/%{name}/msm-kill
-%{_libexecdir}/%{name}/msm-renice
 %{_datadir}/polkit-1/actions/org.mate.mate-system-monitor.policy
 %doc %{_mandir}/man1/mate-system-monitor.1*
 
